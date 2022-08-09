@@ -1,25 +1,41 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:instagram_clone/resources/auth_methods.dart';
 import 'package:instagram_clone/utils/colors.dart';
-import 'package:instagram_clone/widgets/text_field_input.dart';
-import '';
+import 'package:instagram_clone/utils/utils.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import '../widgets/text_field_input.dart';
+
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
+  final TextEditingController _bioController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  Uint8List? _image;
   @override
   void dispose() {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _bioController.dispose();
+    _usernameController.dispose();
+  }
+
+  void selectImage() async {
+    Uint8List im = await pickmage(ImageSource.gallery);
+    setState(() {
+      _image = im;
+    });
   }
 
   @override
@@ -40,14 +56,45 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 64,
           ),
           const SizedBox(
-            height: 64,
+            height: 24,
+          ),
+          Stack(
+            children: [
+               _image !=null?CircleAvatar(
+                radius: 64,
+                backgroundImage: MemoryImage(_image!)
+                )
+             : const CircleAvatar(
+                radius: 64,
+                backgroundImage: NetworkImage(
+                  "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"
+              )),
+              Positioned(
+                  bottom: -10,
+                  left: 80,
+                  child: IconButton(
+                    onPressed: selectImage,
+                    icon: const Icon(Icons.add_a_photo),
+                  ))
+            ],
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          TextFieldInput(
+            textEditingController: _usernameController,
+            hintText: 'Enter your username',
+            textInputType: TextInputType.text,
+          ),
+          const SizedBox(
+            height: 20,
           ),
           TextFieldInput(
               textEditingController: _emailController,
               hintText: 'Enter your email',
               textInputType: TextInputType.emailAddress),
           SizedBox(
-            height: 24,
+            height: 20,
           ),
           TextFieldInput(
             textEditingController: _passwordController,
@@ -58,9 +105,26 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: 20,
           ),
+          TextFieldInput(
+            textEditingController: _bioController,
+            hintText: 'Enter your bio',
+            textInputType: TextInputType.text,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           InkWell(
+            onTap: () async {
+              String res = await AuthMethods().signUpUser(
+                email: _emailController.text,
+                password: _passwordController.text,
+                username: _usernameController.text,
+                bio: _bioController.text,
+              );
+              print(res);
+            },
             child: Container(
-              child: const Text("Log In"),
+              child: const Text("Sign Up"),
               width: double.infinity,
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(vertical: 12),
