@@ -6,9 +6,7 @@ import 'package:instagram_clone/screens/login_screen.dart';
 import 'package:instagram_clone/screens/signup_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/webScreenLayout.dart';
-
-import 'mobileScreenLyaout.dart';
-
+ 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
@@ -41,7 +39,8 @@ class MyApp extends StatelessWidget {
         // home: const ResponsiveScreen(
         //     mobileScreenLayout: MobileScreenLayout(),
         //     webScreenLayout: WebScreenLayout())
-        home: SignupScreen(),
+        // ignore: prefer_const_constructors
+        home:SignupScreen(),
          );
   }
 }
