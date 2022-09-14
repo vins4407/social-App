@@ -76,11 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(),
                 flex: 2,
               ),
-              SvgPicture.asset(
-                'assets/ic_instagram.svg',
-                color: primaryColor,
-                height: 64,
-              ),
+              Text('MatriX',style: TextStyle( fontSize:50,fontFamily: "Pacifico")),
               const SizedBox(
                 height: 64,
               ),
@@ -106,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: !_isLoading
                       ? const Text(
                           'Log in',
+                          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
                         )
                       : const CircularProgressIndicator(
                           color: primaryColor,

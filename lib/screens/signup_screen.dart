@@ -94,13 +94,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Container(),
                 flex: 2,
               ),
-              SvgPicture.asset(
-                'assets/ic_instagram.svg',
-                color: primaryColor,
-                height: 64,
-              ),
+               Text('MatriX',style: TextStyle( fontSize:40,fontFamily: "Pacifico")),
               const SizedBox(
-                height: 64,
+                height: 34,
               ),
               Stack(
                 children: [
@@ -113,7 +109,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       : const CircleAvatar(
                           radius: 64,
                           backgroundImage: NetworkImage(
-                              'https://i.stack.imgur.com/l60Hf.png'),
+                              'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80'),
                           backgroundColor: Colors.red,
                         ),
                   Positioned(
@@ -167,6 +163,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: !_isLoading
                       ? const Text(
                           'Sign up',
+                          style:  TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
                         )
                       : const CircularProgressIndicator(
                           color: primaryColor,

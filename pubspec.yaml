@@ -29,6 +29,7 @@ environment:
 dependencies:
   cloud_firestore: ^3.3.0
   cupertino_icons: ^1.0.2
+  google_fonts: ^3.0.1
   firebase_auth: ^3.4.2
   firebase_core: ^1.19.2
   firebase_storage: ^10.3.2
@@ -68,10 +69,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Pacifico
+      fonts:
+        - asset: fonts/Pacifico-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
