@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:instagram_clone/provider/User_provider.dart';
-import 'package:instagram_clone/utils/dimensions.dart';
+import 'package:instagram_clone/utils/Global_variables.dart';
 import 'package:provider/provider.dart';
 
-class ResponsiveScreen extends StatefulWidget {
-  final Widget webScreenLayout;
+class ResponsiveLayout extends StatefulWidget {
   final Widget mobileScreenLayout;
-  const ResponsiveScreen(
-      {Key? key,
-      required this.mobileScreenLayout,
-      required this.webScreenLayout})
-      : super(key: key);
+  final Widget webScreenLayout;
+  const ResponsiveLayout({
+    Key? key,
+    required this.mobileScreenLayout,
+    required this.webScreenLayout,
+  }) : super(key: key);
 
   @override
-  State<ResponsiveScreen> createState() => _ResponsiveScreenState();
+  State<ResponsiveLayout> createState() => _ResponsiveLayoutState();
 }
 
-class _ResponsiveScreenState extends State<ResponsiveScreen> {
+class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   void initState() {
     super.initState();
@@ -25,7 +24,8 @@ class _ResponsiveScreenState extends State<ResponsiveScreen> {
   }
 
   addData() async {
-    UserProvider _userProvider = Provider.of(context, listen: false);
+    UserProvider _userProvider =
+        Provider.of<UserProvider>(context, listen: false);
     await _userProvider.refreshUser();
   }
 
@@ -33,6 +33,7 @@ class _ResponsiveScreenState extends State<ResponsiveScreen> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth > webScreenSize) {
+        // 600 can be changed to 900 if you want to display tablet screen with mobile screen layout
         return widget.webScreenLayout;
       }
       return widget.mobileScreenLayout;
