@@ -28,7 +28,6 @@ After cloning this repository, migrate to ```social-App``` folder. Then, follow 
 Then run the following commands to run your app:
 ```bash
   flutter pub get
-  open a simulator 
   flutter run
   flutter run -d chrome --web-renderer html (to see the best output)
 ```
